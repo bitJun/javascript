@@ -41,3 +41,37 @@ Array.prototype.unique3 = function()
     }
     return n;
 }
+
+# 1、js数组的深浅拷贝
+
+## 2、js浅拷贝
+
+### 2.1
+var sum = [];
+for (var i = 0; i < 10; i++) {
+  var data = (i + 1) * i;
+  sum.push(data);
+}
+var total = sum;
+total[5] = 1;
+console.log(total[5]);    //total[5]输出为1
+console.log(sum[5]);    //sum[5]输出为1
+这时改变total指定下标的值是也会将sum相对应的小标的值改变，应为这时的数组拷贝是浅拷贝
+
+## 3、深拷贝
+
+### 3.1
+var copy = function (arr1,arr2) {
+   for (var i = 0; i < arr1.length; i++) {
+      arr2[i] = arr1[i]
+   }
+}
+var sum = [];
+for (var i = 0; i < 10; i++) {
+  var data = (i + 1) * i;
+  sum.push(data);
+}
+copy(sum,total)
+total[5] = 1;
+console.log(total[5]);    //total[5]输出为1
+console.log(sum[5]);    //sum[5]输出为30
